@@ -8,13 +8,15 @@ services:
     ports:
       #  - 80
        - "8081:80"
-  # apptwo:
-  #   container_name: two
-  #   build:      
-  #     context: .
-  #     dockerfile: ./ApplicationTwo/Dockerfile 
-  #   ports:
-  #     - "8082:80"
+    # networks:
+    #   - net1
+  applicationtwo:
+    container_name: applicationtwo
+    build:      
+      context: .
+      dockerfile: ./ApplicationTwo/Dockerfile 
+    ports:
+      - "8082:80"
   proxy:
     container_name: proxy
     build:      
@@ -22,6 +24,11 @@ services:
       dockerfile: ./proxy/Dockerfile 
     ports:
       - "8083:80"
+    depends_on:
+      - dapplicationoneb
+      - applicationtwo
+    # networks:
+    #   - net1 
 # configs:
 #   my_config:
 #     file: ./my_config.txt
