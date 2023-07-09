@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  applicationone: 
+    container_name: applicationone
+    build:      
+      context: .
+      dockerfile: ./ApplicationOne/Dockerfile 
+    ports:
+      #  - 80
+       - "8081:80"
+  # apptwo:
+  #   container_name: two
+  #   build:      
+  #     context: .
+  #     dockerfile: ./ApplicationTwo/Dockerfile 
+  #   ports:
+  #     - "8082:80"
+  proxy:
+    container_name: proxy
+    build:      
+      context: .
+      dockerfile: ./proxy/Dockerfile 
+    ports:
+      - "8083:80"
+# configs:
+#   my_config:
+#     file: ./my_config.txt
+#   my_other_config:
+#     external: true
